@@ -1,0 +1,32 @@
+.header
+{
+    display: flex;
+
+    flex-direction:row;
+
+    justify-content: center;
+
+    gap: 10px;
+}
+
+
+#contact
+{
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+
+    width: 25vw;
+
+    display : flex;
+    flex-direction:row;
+}
+
+#contactImage
+{
+    padding: 20px;
+    gap: 5vh;
+}
+
+
+
