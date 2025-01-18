@@ -40,7 +40,7 @@ body
     padding: 5vh;
 }
 /* Overlay mode for when displaying form for signup/contact creation */
-#overlay
+#overlay, #overlay2
 {
     position: fixed;
     top: 0;
@@ -54,7 +54,7 @@ body
 }
 
 /* Centers form */
-#overlayContent
+#overlaySignInForm, #overlayContactForm
 {
     position: absolute;
     top: 50%;
@@ -63,14 +63,42 @@ body
     -ms-transform: translate(-50%, -50%);
 }
 
-/* --------------------------------------------------------------------- */
+/* --------------------------Search/Add---------------------------- */
+
+#searchAdd
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.addBuddyForm
+{
+    background-color: white;
+    width: 10vw;
+    height:30vh;
+    border-radius: 10px;
+    gap: 2rem;
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
 
 /* --------------------Sign In/Up Form ---------------------------------- */
 .signInUpForm
 {
     background-color: white;
-    width: 25vw;
-    height:40vh;
+    width: 20vw;
+    height:30vh;
     border-radius: 10px;
 
     display: flex;
@@ -78,7 +106,6 @@ body
     align-items: center;
     flex-direction: column;
 }
-
 
 #switchCont
 {
@@ -148,6 +175,11 @@ input:checked + .slider:before
     background-color: #fff;
 }
 
+/* Hides Login Initially */
+.Login
+{
+    display: none;
+}
 
 #form
 {
@@ -159,7 +191,7 @@ input:checked + .slider:before
 
 #form input
 {
-    width: 20vw;
+    width: 15vw;
     height: 2em;
     border-radius: 5px;
     border: 1px solid #adb5bd;
