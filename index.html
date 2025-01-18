@@ -17,11 +17,17 @@
 
         <div class="body">
             
+            <div id="searchAdd">
+                <div id="searchBar">
+                    <input type="text" placeholder="Search for a buddy...">
+                    <button>Search</button>
+                </div>
 
-            <div id="searchBar">
-                <input type="text" placeholder="Search for a buddy...">
-                <button>Search</button>
+                <div id="addBuddy">
+                    <button id="addContactButton">Add Buddy</button>
+                </div>
             </div>
+            
             <div id="buddyList">
                 <div id="contact">
                     <div id="contactImage">
@@ -44,8 +50,9 @@
             </div>
         </div>
         
+        <!-- Sign In/Up Container -->
         <div id="overlay">
-            <div class="signInUpForm" id="overlayContent">
+            <div class="signInUpForm" id="overlaySignInForm">
                 
                 <div id="switchCont">
                     <h3>Sign Up</h3>
@@ -73,9 +80,24 @@
                         <input type="password" name="password" placeholder="Password">
                         <button type="submit">Sign Up</button>
                 </div>
-        </div>
+            </div>
         </div>
         
+
+        <!-- Add Contact Container -->
+        <div id="overlay2">
+            <div class="addBuddyForm" id="overlayContactForm">
+                <h2>Add Buddy</h2>
+                <form id="form" action="PHP/addBuddy.php" method="post">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="text" name="firstName" placeholder="First Name">
+                    <input type="text" name="lastName" placeholder="Last Name">
+                    <input type="text" name="email" placeholder="Email">
+                    <button type="submit">Add Buddy</button>
+                </form>
+            </div>
+        </div>
+
         <!-- reference script  -->
         <script src="JS/index.js"></script>
     </body>
