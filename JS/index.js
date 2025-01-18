@@ -28,3 +28,21 @@ switchButton.addEventListener('change',()=>{
     }
 
 });
+
+
+const addContactButton= document.querySelector('#addContactButton');
+
+addContactButton.addEventListener('click',()=>{
+    console.log('Add Contact Button Clicked');
+    document.querySelector('#overlay2').style.display='block';
+});
+
+
+
+
+
+
+
+
+
+
