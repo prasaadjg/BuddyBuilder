@@ -28,8 +28,13 @@
                 </div>
             </div>
             
+
+            <!-- Container to hold all contacts -->
             <div id="buddyList">
+
+                <!-- Placeholder Contact to be deleted -->
                 <div id="contact">
+                    
                     <div id="contactImage">
                         <img src="" alt="placeholder">
                         <!-- Button Functionality  -->
@@ -40,7 +45,6 @@
                         
                     </div>
                     <div id="contactInfo">
-                        <h2>Username</h2>
                         <p>First Name</p>
                         <p>Last Name</p>
                         <p>Email</p>
@@ -53,7 +57,7 @@
         <!-- Sign In/Up Container -->
         <div id="overlay">
             <div class="signInUpForm" id="overlaySignInForm">
-                
+                <button id="closeButton1">X</button>
                 <div id="switchCont">
                     <h3>Sign Up</h3>
                     <label class="switch">
@@ -66,7 +70,7 @@
 
                 <div class="SignIn">
                     <h2>Sign In</h2>
-                    <form id="form" action="PHP/signIn.php" method="post">
+                    <form class="form" id="signIn" method="post">
                         <input type="text" name="username" placeholder="Username">
                         <input type="password" name="password" placeholder="Password">
                         <button type="submit">Sign In</button>
@@ -75,7 +79,7 @@
 
                 <div class="Login">
                     <h2>Sign Up</h2>
-                    <form id="form" action="PHP/signUp.php" method="post">
+                    <form class="form" id="signUp" method="post">
                         <input type="text" name="username" placeholder="Username">
                         <input type="password" name="password" placeholder="Password">
                         <button type="submit">Sign Up</button>
@@ -87,18 +91,19 @@
         <!-- Add Contact Container -->
         <div id="overlay2">
             <div class="addBuddyForm" id="overlayContactForm">
+                <button id="closeButton2" type="button">X</button>
                 <h2>Add Buddy</h2>
-                <form id="form" action="PHP/addBuddy.php" method="post">
-                    <input type="text" name="username" placeholder="Username">
+                <form class="form" id="addContactForm" method="post">
                     <input type="text" name="firstName" placeholder="First Name">
                     <input type="text" name="lastName" placeholder="Last Name">
                     <input type="text" name="email" placeholder="Email">
-                    <button type="submit">Add Buddy</button>
+                    <input type="text" name="phone" placeholder="Phone Number">
+                    <button id="addSubmitButton" type="submit">Add Buddy</button>
                 </form>
             </div>
         </div>
 
         <!-- reference script  -->
-        <script src="JS/index.js"></script>
+        <script src="JS/index.js" type="module"></script>
     </body>
 </html>
