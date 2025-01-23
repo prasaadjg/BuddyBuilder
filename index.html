@@ -59,29 +59,59 @@
             <div class="signInUpForm" id="overlaySignInForm">
                 <button id="closeButton1">X</button>
                 <div id="switchCont">
-                    <h3>Sign Up</h3>
+                    <h3>Login</h3>
                     <label class="switch">
                         <input id=switchButton type="checkbox" placeholder="Sign in">
                         <span class="slider"></span>
                     </label>
-                    <h3>Sign In</h3>
+                    <h3>Sign Up</h3>
                 </div>
                 
 
                 <div class="SignIn">
-                    <h2>Sign In</h2>
+                    <h2>Login</h2>
                     <form class="form" id="signIn" method="post">
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="password" name="password" placeholder="Password">
-                        <button type="submit">Sign In</button>
+                        <div class="inputContainer">
+                            <div class="inputHeader">
+                                <p>Username</p>
+                                <p class="required">*</p>
+                            </div>
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+                        
+                        <div class="inputContainer">
+                            <div class="inputHeader">
+                                <p>Password</p>
+                                <p class="required">*</p>
+                            </div>
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                        
+                        <button type="submit">Login</button>
                     </form>
                 </div>
 
-                <div class="Login">
+                <div class="SignUp">
                     <h2>Sign Up</h2>
                     <form class="form" id="signUp" method="post">
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="password" name="password" placeholder="Password">
+                        <div class="inputContainer">
+                            <div class="inputHeader">
+                                <p>Username</p>
+                                <p class="required">*</p>
+                            </div>
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+
+                        
+                        <div class="inputContainer">
+                            <div class="inputHeader">
+                                <p>Password</p>
+                                <p class="required">*</p>
+                            </div>
+                            
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                        
                         <button type="submit">Sign Up</button>
                 </div>
             </div>
@@ -94,10 +124,30 @@
                 <button id="closeButton2" type="button">X</button>
                 <h2>Add Buddy</h2>
                 <form class="form" id="addContactForm" method="post">
-                    <input type="text" name="firstName" placeholder="First Name">
-                    <input type="text" name="lastName" placeholder="Last Name">
-                    <input type="text" name="email" placeholder="Email">
-                    <input type="text" name="phone" placeholder="Phone Number">
+                    <div id="nameContainer">
+                        <div class="inputContainer" id="contactInput">
+                            <p>First Name</p>
+                            <input type="text" name="firstName" placeholder="First Name">
+                        </div>
+
+                        <div class="inputContainer" id="contactInput">
+                            <p>Last Name</p>
+                            <input type="text" name="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+
+
+                    <div id="contactInfoContainer">
+                        <div class="inputContainer" id="contactInput">
+                            <p>Email</p>
+                            <input type="text" name="email" placeholder="Email">
+                        </div>
+                    
+                        <div class="inputContainer" id="contactInput">
+                            <p>Phone Number</p>
+                            <input type="text" name="phone" placeholder="Phone Number">
+                        </div>
+                    </div>
                     <button id="addSubmitButton" type="submit">Add Buddy</button>
                 </form>
             </div>
