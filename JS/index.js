@@ -17,7 +17,7 @@ closeButton1.addEventListener('click',()=>{
 
 const switchButton=document.querySelector('#switchButton');
 const signInCont=document.querySelector('.SignIn');
-const signUpCont=document.querySelector('.Login');
+const signUpCont=document.querySelector('.SignUp');
 
 
 // Event Listener for Switch Button
@@ -27,10 +27,10 @@ switchButton.addEventListener('change',()=>{
     // display based on checked or not
     if(switchButton.checked){
         signInCont.style.display='none';
-        signUpCont.style.display='block';
+        signUpCont.style.display='flex';
     }
     else{
-        signInCont.style.display='block';
+        signInCont.style.display='flex';
         signUpCont.style.display='none';
     }
 
