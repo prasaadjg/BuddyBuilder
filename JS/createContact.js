@@ -7,24 +7,28 @@ export function createContact(firstName,lastName,phone,email)
     contact.id='contact';
 
 
-    const contactImageAndButtons=document.createElement('div');
+    const contactImageContainer=document.createElement('div');
     const contactImage=document.createElement('img');
 
     // placeholders
     // contactImage.src='https://via.placeholder.com/150';
     contactImage.alt='Contact Image';
     contactImage.id='contactImage';
-    contactImageAndButtons.appendChild(contactImage);
+    contactImageContainer.appendChild(contactImage);
 
     // button container for modifying contact
     const buttons=document.createElement('div');
-    const deleteButton=document.createElement('button');
-    deleteButton.innerHTML='Delete';
-    buttons.appendChild(deleteButton);
+    buttons.id='buttonContainer';
+    
     const editButton=document.createElement('button');
     editButton.innerHTML='Edit';
+    editButton.id='editButton';
     buttons.appendChild(editButton);
-    contactImageAndButtons.appendChild(buttons);
+    const deleteButton=document.createElement('button');
+    deleteButton.innerHTML='Delete';
+    deleteButton.id='deleteButton';
+    buttons.appendChild(deleteButton);
+    
 
     // contact info
     const contactInfo=document.createElement('div');
@@ -39,8 +43,8 @@ export function createContact(firstName,lastName,phone,email)
     contactEmail.innerHTML=email;
     contactInfo.appendChild(contactEmail);
 
-    contact.appendChild(contactImageAndButtons);
+    contact.appendChild(contactImageContainer);
     contact.appendChild(contactInfo);
-
+    contact.appendChild(buttons);
     contactContainer.appendChild(contact);
 }
