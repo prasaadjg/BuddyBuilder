@@ -8,114 +8,127 @@
     <title>Buddy Builder</title>
 </head>
     <body>
-        <div class="header">
-            <!-- Header/Logo Element -->
-            <h1>Buddy Builder</h1>
-            <button id="signInUpButton">Sign In/Up</button>
 
-        </div>
-
-        <div class="body">
-            
-            <div id="searchAdd">
-                <div id="searchBar">
-                    <input type="text" placeholder="Search for a buddy...">
-                    <button>Search</button>
-                </div>
-
-                <div id="addBuddy">
-                    <button id="addContactButton">Add Buddy</button>
-                </div>
-            </div>
-            
-
-            <!-- Container to hold all contacts -->
-            <div id="buddyList">
-
-                <!-- Placeholder Contact to be deleted -->
-                <div id="contact">
-                    
-                    <div id="contactImage">
-                        <img src="" alt="placeholder">
-                        <!-- Button Functionality  -->
-                        
-                        
-                    </div>
-                    <div id="contactInfo">
-                        <p>First Name</p>
-                        <p>Last Name</p>
-                        <p>Email</p>
-                    </div>
-                    <div id="buttonContainer">
-                        <button id="editButton">Edit</button>
-                        <button id="deleteButton">Delete</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         
-        <!-- Sign In/Up Container -->
-        <div id="overlay">
-            <div class="signInUpForm" id="overlaySignInForm">
-                <button id="closeButton1">X</button>
-                <div id="switchCont">
-                    <h3>Login</h3>
-                    <label class="switch">
-                        <input id=switchButton type="checkbox" placeholder="Sign in">
-                        <span class="slider"></span>
-                    </label>
-                    <h3>Sign Up</h3>
+
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <header>
+                        <!-- Header/Logo Element -->
+                        <h1>Buddy Builder</h1>
+                        <button id="signInUpButton">Sign In/Up</button>
+
+                    </header>
+        <div class="content">
+            
+
+            <div class="body">
+                
+                <div id="searchAdd">
+                    <div id="searchBar">
+                        <input type="text" placeholder="Search for a buddy...">
+                        <button>Search</button>
+                    </div>
+
+                    <div id="addBuddy">
+                        <button id="addContactButton">Add Buddy</button>
+                    </div>
                 </div>
                 
 
-                <div class="SignIn">
-                    <h2>Login</h2>
-                    <form class="form" id="signIn" method="post">
-                        <div class="inputContainer">
-                            <div class="inputHeader">
-                                <p>Username</p>
-                                <p class="required">*</p>
-                            </div>
-                            <input type="text" name="username" placeholder="Username">
-                        </div>
-                        
-                        <div class="inputContainer">
-                            <div class="inputHeader">
-                                <p>Password</p>
-                                <p class="required">*</p>
-                            </div>
-                            <input type="password" name="password" placeholder="Password">
-                        </div>
-                        
-                        <button type="submit">Login</button>
-                    </form>
-                </div>
+                <!-- Container to hold all contacts -->
+                <div id="buddyList">
 
-                <div class="SignUp">
-                    <h2>Sign Up</h2>
-                    <form class="form" id="signUp" method="post">
-                        <div class="inputContainer">
-                            <div class="inputHeader">
-                                <p>Username</p>
-                                <p class="required">*</p>
-                            </div>
-                            <input type="text" name="username" placeholder="Username">
-                        </div>
-
+                    <!-- Placeholder Contact to be deleted -->
+                    <div id="contact">
                         
-                        <div class="inputContainer">
-                            <div class="inputHeader">
-                                <p>Password</p>
-                                <p class="required">*</p>
-                            </div>
+                        <div id="contactImage">
+                            <img src="" alt="placeholder">
+                            <!-- Button Functionality  -->
                             
-                            <input type="password" name="password" placeholder="Password">
+                            
                         </div>
-                        
-                        <button type="submit">Sign Up</button>
+                        <div id="contactInfo">
+                            <p>First Name</p>
+                            <p>Last Name</p>
+                            <p>Email</p>
+                        </div>
+                        <div id="buttonContainer">
+                            <button id="editButton">Edit</button>
+                            <button id="deleteButton">Delete</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+        
+            
+        
+        </div>
+
+
+        
+        <!-- Sign In/Up Container -->
+            <div id="overlay">
+                <div class="signInUpForm" id="overlaySignInForm">
+                    <button id="closeButton1">X</button>
+                    <div id="switchCont">
+                        <h3>Login</h3>
+                        <label class="switch">
+                            <input id=switchButton type="checkbox" placeholder="Sign in">
+                            <span class="slider"></span>
+                        </label>
+                        <h3>Sign Up</h3>
+                    </div>
+                    
+
+                    <div class="SignIn">
+                        <h2>Login</h2>
+                        <form class="form" id="signIn" method="post">
+                            <div class="inputContainer">
+                                <div class="inputHeader">
+                                    <p>Username</p>
+                                    <p class="required">*</p>
+                                </div>
+                                <input type="text" name="username" placeholder="Username">
+                            </div>
+                            
+                            <div class="inputContainer">
+                                <div class="inputHeader">
+                                    <p>Password</p>
+                                    <p class="required">*</p>
+                                </div>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            
+                            <button type="submit">Login</button>
+                        </form>
+                    </div>
+
+                    <div class="SignUp">
+                        <h2>Sign Up</h2>
+                        <form class="form" id="signUp" method="post">
+                            <div class="inputContainer">
+                                <div class="inputHeader">
+                                    <p>Username</p>
+                                    <p class="required">*</p>
+                                </div>
+                                <input type="text" name="username" placeholder="Username">
+                            </div>
+
+                            
+                            <div class="inputContainer">
+                                <div class="inputHeader">
+                                    <p>Password</p>
+                                    <p class="required">*</p>
+                                </div>
+                                
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                            
+                            <button type="submit">Sign Up</button>
+                    </div>
+                </div>
         </div>
         
 
@@ -153,7 +166,6 @@
                 </form>
             </div>
         </div>
-
         <!-- reference script  -->
         <script src="JS/index.js" type="module"></script>
     </body>
