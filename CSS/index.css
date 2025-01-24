@@ -1,31 +1,58 @@
 :root
 {
-    --backgroundColor: tan;
-    --input: ;
-    --primaryColor:brown ;
-    --secondaryColor: ;
+    /* Background Colors */
+    --background-primary: #1E1E1E; 
+    --background-secondary: #2C2C2C; 
+
+    /* Text Colors */
+    --text-primary: #EAEAEA; /* Main text */
+    --text-secondary: #B0B0B0; /* Secondary text, timestamps */
+
+    /* Accent Colors */
+    --accent-link: #10A7E2; /* Links and interactive elements */
+    --accent-highlight: #19C37D; /* Buttons or highlighted states */
+
+    /* Borders and Shadows */
+    --border-color: #3A3A3A; /* Element outlines or separators */
+
+    --input-background: #2C2C2C;
+    --input-border: #3A3A3A;
+    --input-border-focus: #10A7E2;
+    --input-text: #EAEAEA;
+    --input-placeholder: #B0B0B0;
 }
 
 
 
 body
 {
-    background-color: var(--backgroundColor);
+    background-color: var(--background-secondary);
     margin:0;
     padding:0;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: var(--text-primary);
 }
 
 
 .header
 {
     display: flex;
+    justify-content: space-between;
     flex-direction:row;
     justify-content: center;
-
-    background-color: var(--primaryColor);
-
+    padding: 10px;
+    align-items: center;
+    background-color: var(--background-primary);
     
-    gap: 10px;
+    
+    gap: 5px;
+}
+
+.header h1
+{
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
 }
 
 
@@ -38,7 +65,83 @@ body
     align-items: center;
 
     padding: 5vh;
+    gap: 2rem;
 }
+
+/* --------------------Sign in/up and search styling ---------------------------------- */
+
+/* Sign In/Up button styling */
+#signInUpButton
+{ 
+    background-color: var(--background-secondary);
+    color: white;
+    text-align: center;
+    padding: 16px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 1s;
+    margin-left: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+/* Sign In/Up button hover effects */
+#signInUpButton:hover
+{
+    background-color: #1e1f1ffd;
+    color:white;
+}
+/* Sign In/Up button click effects */
+#signInUpButton:active 
+{
+    background-color: #1e1f1ffd;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+/* Search bar styling */
+#searchBarInp
+{
+ 
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Search bar styling focus*/
+#searchBarInp:focus
+{ 
+    outline: 3px solid rgb(0, 0, 0);    
+}
+
+/* Search button and Add Buddy Button styling */
+#searchButton, #addContactButton
+{
+    background-color: var(--background-secondary);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;
+    transition-duration: 1s;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Search button and Add Buddy Button hover effects */
+#searchButton:hover, #addContactButton:hover
+{
+    background-color: #1e1f1ffd;
+    color:white;
+}
+
+/* Search button and Add Buddy Button click effects */
+#searchButton:active, #addContactButton:active
+{
+    background-color: #1e1f1ffd;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 /* Overlay mode for when displaying form for signup/contact creation */
 #overlay, #overlay2
 {
@@ -76,7 +179,7 @@ body
 
 .addBuddyForm
 {
-    background-color: white;
+    background-color: var(--background-primary);
     width: 10vw;
     height:30vh;
     border-radius: 10px;
@@ -96,7 +199,7 @@ body
 /* --------------------Sign In/Up Form ---------------------------------- */
 .signInUpForm
 {
-    background-color: white;
+    background-color: var(--background-primary);
     width: 20vw;
     height:30vh;
     border-radius: 10px;
@@ -181,7 +284,7 @@ input:checked + .slider:before
     display: none;
 }
 
-#form
+.form
 {
     display: flex;
     flex-direction: column;
@@ -189,7 +292,7 @@ input:checked + .slider:before
     gap:1em;
 }
 
-#form input
+.form input
 {
     width: 15vw;
     height: 2em;
@@ -198,15 +301,21 @@ input:checked + .slider:before
     padding: 0.5em;
 }
 
-#form button
+.form button
 {
     height:3em;
     background-color: white;
 }
 
+/* -----------------------Adding Contact --------------------------- */
 
 
-
+#buddyList
+{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    
+}
 
 #contact
 {
