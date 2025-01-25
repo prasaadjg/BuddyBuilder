@@ -46,11 +46,19 @@ header {
     display: flex;
     position: sticky;
     top: 0;
+    height: 7vh;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     background-color: var(--background-primary);
     gap: 10px;
     z-index: 1000; /* Ensure it's above the background layers */
+}
+
+header h1
+{
+    position:absolute;
+    left:45%;
 }
 
 /* -----------------------------Star Background------------------------- */
@@ -144,7 +152,79 @@ header {
     -ms-transform: translate(-50%, -50%);
 }
 
+/* --------------------Sign in/up and search styling ---------------------------------- */
 
+/* Sign In/Up button styling */
+#signInUpButton
+{ 
+    background-color: var(--background-secondary);
+    color: white;
+    text-align: center;
+    padding: 16px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 1s;
+    margin-left: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+/* Sign In/Up button hover effects */
+#signInUpButton:hover
+{
+    background-color: #1e1f1ffd;
+    color:white;
+}
+/* Sign In/Up button click effects */
+#signInUpButton:active 
+{
+    background-color: #1e1f1ffd;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+/* Search bar styling */
+#searchBarInp
+{
+ 
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Search bar styling focus*/
+#searchBarInp:focus
+{ 
+    outline: 3px solid rgb(0, 0, 0);    
+}
+
+/* Search button and Add Buddy Button styling */
+#searchButton, #addContactButton
+{
+    background-color: var(--background-secondary);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;
+    transition-duration: 1s;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Search button and Add Buddy Button hover effects */
+#searchButton:hover, #addContactButton:hover
+{
+    background-color: #1e1f1ffd;
+    color:white;
+}
+
+/* Search button and Add Buddy Button click effects */
+#searchButton:active, #addContactButton:active
+{
+    background-color: #1e1f1ffd;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
 
 /* --------------------------Search/Add---------------------------- */
 
