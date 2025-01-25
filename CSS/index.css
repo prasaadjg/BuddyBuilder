@@ -101,6 +101,7 @@ header h1
 }
 
 .content {
+    
     position: relative;
     z-index: 1; /* Ensure content is above the background layers */
     color: white;
@@ -151,6 +152,21 @@ header h1
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
+
+/* -------------------Intro Page------------------------------------------------------- */
+
+.titlePage
+{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 /* --------------------Sign in/up and search styling ---------------------------------- */
 
