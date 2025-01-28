@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="CSS/index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     
     <title>Buddy Builder</title>
 </head>
@@ -40,31 +40,32 @@
                     </div>
                 </div>
                 
+                <div id="displaySwitchContainter">
+                    <button id="gridButton"><img src="assets/grid.svg" alt="Grid Placeholder"></button>
+                    <button id="listButton"><img src="assets/list.svg" alt="List Placeholder"></button>
+
+                </div>
 
                 <!-- Container to hold all contacts -->
-                <div id="buddyList">
+                <div class="contactContainer">
+                    <div id="buddyGrid">
 
                     <!-- Placeholder Contact to be deleted -->
-                    <div id="contact">
-                        
-                        <div id="contactImage">
-                            <img src="" alt="placeholder">
-                            <!-- Button Functionality  -->
-                            
-                            
-                        </div>
-                        <div id="contactInfo">
-                            <p>First Name</p>
-                            <p>Last Name</p>
-                            <p>Email</p>
-                        </div>
-                        <div id="buttonContainer">
-                            <button id="editButton">Edit</button>
-                            <button id="deleteButton">Delete</button>
-                        </div>
+                        <div id="contactGrid">
+                            <div id="contactInfo">
+                                <p>First Name</p>
+                                <p>Last Name</p>
+                                <p>Email</p>
+                            </div>
+                            <div id="buttonContainer">
+                                <button id="editButton">Edit</button>
+                                <button id="deleteButton">Delete</button>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
+                
             </div>
         
             
@@ -113,6 +114,24 @@
                     <div class="SignUp">
                         <h2>Sign Up</h2>
                         <form class="form" id="signUp" method="post">
+                            <div>
+                                <div class="inputContainer">
+                                    <div class="inputHeader">
+                                        <p>First Name</p>
+                                        <p class="required">*</p>
+                                    </div>
+                                    <input type="text" name = "firstName" placeholder="First Name">
+                                </div>
+                                
+                                <div class="inputContainer">
+                                    <div class="inputHeader">
+                                        <p>Last Name</p>
+                                        <p class="required">*</p>
+                                    </div>
+                                    <input type="text" name="lastName" placeholder="Last Name">
+                                </div>
+                            </div>
+
                             <div class="inputContainer">
                                 <div class="inputHeader">
                                     <p>Username</p>
@@ -131,7 +150,8 @@
                                 <input type="password" name="password" placeholder="Password">
                             </div>
                             
-                            <button type="submit">Sign Up</button>
+                            <button id="signUpSubmit" type="submit">Sign Up</button>
+                        </form>
                     </div>
                 </div>
         </div>
@@ -172,6 +192,7 @@
             </div>
         </div>
         <!-- reference script  -->
-        <script src="JS/index.js" type="module"></script>
+        <script src="js/index.js" type="module"></script>
+        
     </body>
 </html>
