@@ -121,9 +121,9 @@ header h1
 .body
 {
     /* aligns the content to the center */
-    display:flex;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center space-between;
     align-items: center;
 
     padding: 5vh;
@@ -157,12 +157,12 @@ header h1
 
 .titlePage
 {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 50%;
+    top: 40vh;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -202,21 +202,24 @@ header h1
 #searchBarInp
 {
  
-    color: rgb(0, 0, 0);
-    border-radius: 8px;
-    display: inline-block;
-    font-size: 16px;
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    width: 20vw;
+    height: 3.5vh;
+    font-size: 18px;
+    overflow: hidden;
+
+    border:none;
+    background-color: transparent;
 }
 
 /* Search bar styling focus*/
 #searchBarInp:focus
 { 
-    outline: 3px solid rgb(0, 0, 0);    
+    outline: none;
+    color: var(--text-primary);
 }
 
 /* Search button and Add Buddy Button styling */
-#searchButton, #addContactButton
+/* #searchButton, #addContactButton
 {
     background-color: var(--background-secondary);
     color: white;
@@ -225,23 +228,79 @@ header h1
     font-size: 16px;
     transition-duration: 1s;
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
+} */
+
+#addContactButton,#searchContactButton
+{
+    background-color: transparent;
+    border: none;
 }
 
+#addContactButton img,#searchContactButton img
+{
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
 /* Search button and Add Buddy Button hover effects */
-#searchButton:hover, #addContactButton:hover
+#searchContactButton:hover, #addContactButton:hover
 {
     background-color: #1e1f1ffd;
+    border-radius: 3em;
     color:white;
 }
 
 /* Search button and Add Buddy Button click effects */
-#searchButton:active, #addContactButton:active
+/* #searchContactButton:active, #addContactButton:active
 {
     background-color: #1e1f1ffd;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+} */
+
+
+#displaySwitchContainer
+{
+    width: 270px;
+    margin: auto;
+    position: relative;
+    border-radius: 30px;
+    top: -25px;
+    box-shadow: 0 0 25px 0 rgba(137, 114, 97, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
+#displaySlider
+{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 140px;
+    height: 100%;
+    background: var(--accent-highlight);
+    border-radius: 30px;
+    transition: .4s;
+}
+#displaySwitchContainer img
+{
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+/* #displaySwitchContainer button
+{
+    background-color: var(--background-primary);
+    border-radius: 10px;
+} */
+
+.toggleButton
+{
+    padding: 10px 42px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
 /* --------------------------Search/Add---------------------------- */
 
 #searchAdd
@@ -251,6 +310,10 @@ header h1
     justify-content: center;
     align-items: center;
     gap: 10px;
+    width: 27vw;
+    height: 5vh;
+    border-radius: 5em;
+    background-color: var(--input-background);
 }
 
 .addBuddyForm
@@ -310,7 +373,7 @@ header h1
 /* --------------------Sign In/Up Form ---------------------------------- */
 .signInUpForm
 {
-    background-color: var(--background-primary);
+    background-color: var(--input-background);
     width: 20vw;
     height:40vh;
     border-radius: 10px;
@@ -482,29 +545,29 @@ input:checked + .slider:before
 /* -----------------------Contact Cards --------------------------- */
 
 
-#buddyList
+#buddyGrid
 {
     display:grid;
     grid-template-columns: repeat(3,1fr);
     gap: 10rem;
 }
 
-
 /* For list display */
-#buddyList2
+#buddyList
 {
     display: flex;
     flex-direction: column;
-
+    gap: 1em;
 }
 
-#contact
+#contactGrid
 {
     
     border: 1px solid var(--border-color);
     background-color: var(--background-primary);
-    width: 25vw;
+    width: 20vw;
     height: 15vh;
+    font-size:18px;
 
     display : flex;
     flex-direction:row;
@@ -513,12 +576,33 @@ input:checked + .slider:before
 }
 
 /* For list display */
-#contact2
+#contactList
 {
+    display: flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+    align-items: center;
 
+    border: 1px solid var(--border-color);
+    background-color: var(--background-primary);
+    min-width: 50vw;
+    height: 5vh;
+    font-size:18px;
 }
 
+#contactInfo
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
 
+#contactInfo2
+{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
 #buttonContainer
 {
     display: flex;
@@ -529,7 +613,9 @@ input:checked + .slider:before
 /* For list display */
 #buttonContainer2
 {
-
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
 }
 
 
