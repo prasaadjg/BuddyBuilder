@@ -155,6 +155,8 @@ addContact.addEventListener('submit',function(event){
         displayList();
     }
 
+    document.querySelector('#overlay2').style.display='none';
+    
 });
 
 // -------------------------DISPLAY SWITCH-------------------------
