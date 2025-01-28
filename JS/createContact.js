@@ -2,23 +2,23 @@ export function createContact(firstName,lastName,phone,email)
 {
     console.log('Creating Contact');
 
-    const contactContainer=document.querySelector('#buddyList');
+    const contactContainer=document.querySelector('.contactContainer');
     const contact=document.createElement('div');
-    contact.id='contact';
+    // contact.id='contact';
 
 
-    const contactImageContainer=document.createElement('div');
-    const contactImage=document.createElement('img');
+    // const contactImageContainer=document.createElement('div');
+    // const contactImage=document.createElement('img');
 
     // placeholders
     // contactImage.src='https://via.placeholder.com/150';
-    contactImage.alt='Contact Image';
-    contactImage.id='contactImage';
-    contactImageContainer.appendChild(contactImage);
+    // contactImage.alt='Contact Image';
+    // contactImage.id='contactImage';
+    // contactImageContainer.appendChild(contactImage);
 
     // button container for modifying contact
     const buttons=document.createElement('div');
-    buttons.id='buttonContainer';
+    // buttons.id='buttonContainer';
     
     const editButton=document.createElement('button');
     editButton.innerHTML='Edit';
@@ -43,8 +43,8 @@ export function createContact(firstName,lastName,phone,email)
     contactEmail.innerHTML=email;
     contactInfo.appendChild(contactEmail);
 
-    contact.appendChild(contactImageContainer);
+    // contact.appendChild(contactImageContainer);
     contact.appendChild(contactInfo);
     contact.appendChild(buttons);
-    contactContainer.appendChild(contact);
+    contactContainer.children[0].appendChild(contact);
 }
