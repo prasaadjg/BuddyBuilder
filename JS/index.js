@@ -21,25 +21,27 @@ closeButton1.addEventListener('click',()=>{
 });
 
 
-const switchButton=document.querySelector('#switchButton');
+const displayLogin= document.querySelector('#signInButton');
+const displayRegister= document.querySelector('#signUpButton');
+const slider=document.querySelector('#displaySlider2');
 const signInCont=document.querySelector('.SignIn');
 const signUpCont=document.querySelector('.SignUp');
 
 
 // Event Listener for Switch Button
-switchButton.addEventListener('change',()=>{
-    console.log('Switch Button Clicked');
-    
-    // display based on checked or not
-    if(switchButton.checked){
-        signInCont.style.display='none';
-        signUpCont.style.display='flex';
-    }
-    else{
-        signInCont.style.display='flex';
-        signUpCont.style.display='none';
-    }
 
+displayLogin.addEventListener('click',()=>{
+    console.log('Login Clicked');
+    signUpCont.style.display='none';
+    signInCont.style.display='flex';
+    slider.style.left='0px';
+});
+
+displayRegister.addEventListener('click',()=>{
+    console.log('Register Clicked');
+    signInCont.style.display='none';
+    signUpCont.style.display='flex';
+    slider.style.left='130px';
 });
 
 // SIGN UP EVENT LISTENER
