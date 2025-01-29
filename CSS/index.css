@@ -46,13 +46,30 @@ header {
     display: flex;
     position: sticky;
     top: 0;
-    height: 7vh;
+    height: 10vh;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: var(--background-primary);
+    background-color: rgba(var(--background-primary-rgb), 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     gap: 10px;
-    z-index: 1000; /* Ensure it's above the background layers */
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(to bottom, 
+        rgba(var(--background-primary-rgb), 0.5), 
+        rgba(var(--background-primary-rgb), 0)
+    );
 }
 
 header h1
@@ -181,8 +198,9 @@ header h1
     display: inline-block;
     font-size: 16px;
     transition-duration: 1s;
-    margin-left: auto;
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    margin-left: 90%;
+    box-shadow:0 0 25px 0 rgba(137, 114, 97, 0.4),0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 15px 35px 0 rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 /* Sign In/Up button hover effects */
 #signInUpButton:hover
@@ -218,17 +236,13 @@ header h1
     color: var(--text-primary);
 }
 
-/* Search button and Add Buddy Button styling */
-/* #searchButton, #addContactButton
+#addContactForm
 {
-    background-color: var(--background-secondary);
-    color: white;
-    text-align: center;
-    border-radius: 8px;
-    font-size: 16px;
-    transition-duration: 1s;
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-} */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 #addContactButton,#searchContactButton
 {
@@ -250,21 +264,58 @@ header h1
     color:white;
 }
 
+#addContactButton, #searchContactButton {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#addContactButton::after, #searchContactButton::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background-color: rgba(52, 53, 65, 0.9);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+}
+
+#addContactButton:hover::after,#searchContactButton:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 
 #switchCont
 {
     background-color: var(--background-primary);
 }
+
+
 #switchCont, #displaySwitchContainer {
     width: 10.5vw;
     margin: auto;
     border-radius: 30px;
-    box-shadow: 0 0 25px 0 rgba(137, 114, 97, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow:0 0 25px 0 rgba(137, 114, 97, 0.4),0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 15px 35px 0 rgba(0, 0, 0, 0.3);      
     position: relative;
     display: flex;
     flex-direction: row;
 }
 
+#displaySwitchContainer
+{
+    position:sticky;
+    top: 18vh;
+}
 /* Common slider styles */
 #displaySlider2, #displaySlider {
     position: absolute;
@@ -289,6 +340,37 @@ header h1
     color: var(--text-primary);
 }
 
+#gridButton,#listButton
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gridButton:after, #listButton::after
+{
+    content: attr(title);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background-color: rgba(52, 53, 65, 0.9);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+}
+
+#gridButton:hover::after,#listButton:hover::after
+{
+    opacity: 1;
+    visibility: visible;
+}
 #displaySwitchContainer img
 {
     width: 2em;
@@ -308,6 +390,8 @@ header h1
     height: 5vh;
     border-radius: 5em;
     background-color: var(--input-background);
+    box-shadow:0 0 25px 0 rgba(137, 114, 97, 0.4),0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 15px 35px 0 rgba(0, 0, 0, 0.3);      
+
 }
 
 .addBuddyForm
@@ -519,6 +603,7 @@ header h1
     
     border: 1px solid var(--border-color);
     background-color: var(--background-primary);
+    box-shadow:0 0 25px 0 rgba(137, 114, 97, 0.4),0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 15px 35px 0 rgba(0, 0, 0, 0.3);
     width: 20vw;
     height: 15vh;
     font-size:18px;
@@ -539,6 +624,8 @@ header h1
 
     border: 1px solid var(--border-color);
     background-color: var(--background-primary);
+    box-shadow:0 0 25px 0 rgba(137, 114, 97, 0.4),0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 15px 35px 0 rgba(0, 0, 0, 0.3);
+
     min-width: 50vw;
     height: 5vh;
     font-size:18px;
