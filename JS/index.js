@@ -165,10 +165,10 @@ const listButton=document.querySelector('#listButton');
 
 gridButton.addEventListener('click',()=>{
     displayGrid();
-    displayFlag=false;
+    displayFlag=true;
 });
 
 listButton.addEventListener('click',()=>{
     displayList();
-    displayFlag=true;
+    displayFlag=false;
 });
