@@ -4,21 +4,9 @@ export function createContact(firstName,lastName,phone,email)
 
     const contactContainer=document.querySelector('.contactContainer');
     const contact=document.createElement('div');
-    // contact.id='contact';
-
-
-    // const contactImageContainer=document.createElement('div');
-    // const contactImage=document.createElement('img');
-
-    // placeholders
-    // contactImage.src='https://via.placeholder.com/150';
-    // contactImage.alt='Contact Image';
-    // contactImage.id='contactImage';
-    // contactImageContainer.appendChild(contactImage);
 
     // button container for modifying contact
     const buttons=document.createElement('div');
-    // buttons.id='buttonContainer';
     
     const editButton=document.createElement('button');
     editButton.innerHTML='Edit';
@@ -34,16 +22,18 @@ export function createContact(firstName,lastName,phone,email)
     const contactInfo=document.createElement('div');
     contactInfo.id='contactInfo';
     const contactName=document.createElement('p');
-    contactName.innerHTML=firstName+' '+lastName;
+    contactName.id='contactName';
+    contactName.textContent=firstName+' '+lastName;
     contactInfo.appendChild(contactName);
     const contactPhone=document.createElement('p');
-    contactPhone.innerHTML=phone;
+    contactPhone.id='contactPhone';
+    contactPhone.textContent=phone;
     contactInfo.appendChild(contactPhone);
     const contactEmail=document.createElement('p');
-    contactEmail.innerHTML=email;
+    contactEmail.id='contactEmail';
+    contactEmail.textContent=email;
     contactInfo.appendChild(contactEmail);
 
-    // contact.appendChild(contactImageContainer);
     contact.appendChild(contactInfo);
     contact.appendChild(buttons);
     contactContainer.children[0].appendChild(contact);
