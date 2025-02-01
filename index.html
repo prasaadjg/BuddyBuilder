@@ -29,7 +29,7 @@
                 <div id="searchAdd">
                     <div id="addBuddy">
                         <!-- <button id="addContactButton">Add Buddy</button> -->
-                        <button id="addContactButton"><img src="assets/add.svg" alt="Add Contact"></button>
+                        <button id="addContactButton" title="Add Contact"><img src="assets/add.svg" alt="Add Contact" title="Add Contact"></button>
                     </div>
                     <div id="searchBar">
                         <input id = "searchBarInp" type="text" placeholder="Search for a buddy...">
@@ -37,15 +37,15 @@
     
                     <div id = "search">
                         <!-- <button id = searchButton>Search</button> -->
-                        <button id="searchContactButton"><img src="assets/search.svg" alt="Search"></button>
+                        <button id="searchContactButton" title="Search For Buddy"><img src="assets/search.svg" alt="Search"></button>
                     </div>
     
                     
                 </div>
                 <div id="displaySwitchContainer">
                     <div id="displaySlider"></div>
-                    <button class="toggleButton" id="gridButton"><img src="assets/grid.svg" alt="Grid Placeholder"></button>
-                    <button class="toggleButton" id="listButton"><img src="assets/list.svg" alt="List Placeholder"></button>
+                    <button class="toggleButton" id="gridButton" title="Display in Grid Form"><img src="assets/grid.svg" alt="Grid Placeholder"></button>
+                    <button class="toggleButton" id="listButton" title="Display in List Form"><img src="assets/list.svg" alt="List Placeholder"></button>
                 </div>
                 
 
@@ -56,8 +56,8 @@
                     <!-- Placeholder Contact to be deleted -->
                         <div id="contactGrid">
                             <div id="contactInfo">
-                                <p>First Name</p>
-                                <p>Last Name</p>
+                                <p>Name</p>
+                                <p>Phone Number</p>
                                 <p>Email</p>
                             </div>
                             <div id="buttonContainer">
@@ -90,69 +90,136 @@
 
                     <div class="SignIn">
                         <h2>Login</h2>
+                        <p class="ErrorMessage">Invalid Username or Password</p>
                         <form class="form" id="signIn" method="post">
                             <div class="inputContainer">
                                 <div class="inputHeader">
                                     <p>Username</p>
-                                    <p class="required">*</p>
+                                    <p class="requiredField">*</p>
                                 </div>
-                                <input type="text" name="username" placeholder="Username">
+                                <div class="input-wrapper">
+                                    <input type="text" name="username" placeholder="Username">
+                                    <img src="/assets/user.svg" alt="userImg" class="input-icon">
+                                </div>
                             </div>
                             
                             <div class="inputContainer">
                                 <div class="inputHeader">
                                     <p>Password</p>
-                                    <p class="required">*</p>
+                                    <p class="requiredField">*</p>
                                 </div>
-                                <input type="password" name="password" placeholder="Password">
+                                <div class="input-wrapper">
+                                    <input type="password" name="password" placeholder="Password">
+                                    <img src="/assets/lock.svg" alt="lockIcon" class="input-icon">
+                                </div>
                             </div>
                             
                             <button type="submit">Login</button>
                         </form>
                     </div>
 
+                    
                     <div class="SignUp">
                         <h2>Sign Up</h2>
-                        <form class="form" id="signUp" method="post">
+                        <div id="messageSignUp"></div>
+                        <form class="form" id="signUp" method="post" novalidate>
                             <div id="nameContainer">
                                 <div class="inputContainer">
                                     <div class="inputHeader">
                                         <p>First Name</p>
-                                        <p class="required">*</p>
+                                        <p class="requiredField">*</p>
                                     </div>
-                                    <input type="text" name = "firstName" placeholder="First Name" required>
+                                    <input type="text" name="firstName" placeholder="First Name" id="firstName" required>
                                 </div>
-                                
+                                    
                                 <div class="inputContainer">
                                     <div class="inputHeader">
                                         <p>Last Name</p>
-                                        <p class="required">*</p>
+                                        <p class="requiredField">*</p>
                                     </div>
-                                    <input type="text" name="lastName" placeholder="Last Name" required>
+                                    <input type="text" name="lastName" placeholder="Last Name" id="lastName" required>
                                 </div>
                             </div>
-
+                        
                             <div class="inputContainer">
                                 <div class="inputHeader">
                                     <p>Username</p>
-                                    <p class="required">*</p>
+                                    <p class="requiredField">*</p>
                                 </div>
-                                <input type="text" name="username" placeholder="Username" required>
+                                <div class="input-wrapper">
+                                    <input type="text" 
+                                            name="username" 
+                                            placeholder="Username" 
+                                            required
+                                            pattern="^[a-zA-Z0-9_-]{3,20}$"
+                                            title="Username must be 3-20 characters and can only contain letters, numbers, underscores, and hyphens"
+                                            minlength="3"
+                                            maxlength="20"
+                                            id="username">
+                                    <img src="/assets/user.svg" alt="userImg" class="input-icon">
+                                </div>
                             </div>
-
-                            
+                        
                             <div class="inputContainer">
                                 <div class="inputHeader">
                                     <p>Password</p>
-                                    <p class="required">*</p>
+                                    <p class="requiredField">*</p>
                                 </div>
-                                
-                                <input type="password" name="password" placeholder="Password" required>
+                                <div class="input-wrapper">
+                                    <input type="password" 
+                                            name="password" 
+                                            placeholder="Password" 
+                                            required
+                                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                                            title="Password must be at least 8 characters long and contain at least one letter and one number"
+                                            minlength="8"
+                                            id="password">
+                                    <img src="/assets/lock.svg" alt="lockIcon" class="input-icon">
+                                </div>
                             </div>
-                            
+                                
                             <button id="signUpSubmit" type="submit">Sign Up</button>
                         </form>
                     </div>
+
+                    <div id="requirements">
+                        <div id="signUpReqUser">
+                            <h1>Username Should Have:</h1>
+
+                            <div class="requirementCont">
+                                <div class="requirement">
+                                    <img src="assets/correct.svg" alt="correct" id="correctIcon">
+                                    <img src="assets/wrong.svg" alt="wrong" id="wrongIcon">
+                                    <p>3-20 characters </p>
+                                </div>
+                                <div class="requirement">
+                                    <img src="assets/correct.svg" alt="correct" id="correctIcon">
+                                    <img src="assets/wrong.svg" alt="wrong" id="wrongIcon">
+                                    <p>Only letters and  numbers </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="signUpReqPass">
+                            <h1>Password Should Have:</h1>
+                            
+                            <div class="requirementCont">
+                                <div class="requirement">
+                                    <img src="assets/correct.svg" alt="correct" id="correctIcon">
+                                    <img src="assets/wrong.svg" alt="wrong" id="wrongIcon">
+                                    <p>At least 8 characters </p>
+                                </div>
+                                <div class="requirement">
+                                    <img src="assets/correct.svg" alt="correct" id="correctIcon">
+                                    <img src="assets/wrong.svg" alt="wrong" id="wrongIcon">
+                                    <p>At least one letter and one number </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    
                 </div>
         </div>
         
@@ -165,8 +232,11 @@
                 <form class="form" id="addContactForm" method="post">
                     <div id="nameContainer">
                         <div class="inputContainer" id="contactInput">
-                            <p>First Name</p>
-                            <input type="text" name="firstName" placeholder="First Name">
+                            <div class="inputHeader">
+                                <p>First Name</p>
+                                <p class="requiredField">*</p>
+                            </div>
+                            <input type="text" name="firstName" placeholder="First Name" required>
                         </div>
 
                         <div class="inputContainer" id="contactInput">
@@ -188,6 +258,44 @@
                         </div>
                     </div>
                     <button id="addSubmitButton" type="submit">Add Buddy</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Contact Container -->
+        <div id="overlay3">
+            <div class="addBuddyForm" id="overlayContactForm">
+                <button id="closeButton3" type="button">X</button>
+                <h2>Edit Buddy</h2>
+                <form class="form" id="editContactForm" method="post">
+                    <div id="nameContainer">
+                        <div class="inputContainer" id="contactInput">
+                            <div class="inputHeader">
+                                <p>First Name</p>
+                                <p class="requiredField">*</p>
+                            </div>
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                        </div>
+
+                        <div class="inputContainer" id="contactInput">
+                            <p>Last Name</p>
+                            <input type="text" name="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+
+
+                    <div id="contactInfoContainer">
+                        <div class="inputContainer" id="contactInput">
+                            <p>Email</p>
+                            <input type="text" name="email" placeholder="Email">
+                        </div>
+                    
+                        <div class="inputContainer" id="contactInput">
+                            <p>Phone Number</p>
+                            <input type="text" name="phone" placeholder="Phone Number">
+                        </div>
+                    </div>
+                    <button id="addSubmitButton" type="submit">Confirm Changes</button>
                 </form>
             </div>
         </div>
