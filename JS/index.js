@@ -1,7 +1,7 @@
 import { createContact } from "./createContact.js";
 import { displayGrid, displayList } from "./displaySwitch.js";
+import { editContact } from "./editContact.js";
 import { validateSignUp } from "./validateForm.js";
-
 let userID=0;
 
 
@@ -273,6 +273,7 @@ signIn.addEventListener('submit',function(event){
         }
     })
 });
+
 // -------------------------ADD CONTACT----------------------------
 const addContactButton= document.querySelector('#addContactButton');
 const closeButton2=document.querySelector('#closeButton2');
@@ -301,6 +302,7 @@ addContact.addEventListener('submit',function(event){
         email:addContact.querySelector('input[name="email"]').value,
         userID: userID
     }
+
     fetch('LAMPAPI/AddContact.php',{
         method:'POST',
         headers:{
@@ -312,17 +314,16 @@ addContact.addEventListener('submit',function(event){
     .then(response=>response.json())
     .then(data=>{
         console.log("Success Adding:",data);
-        createContact(formData.firstName,formData.lastName,formData.phone,formData.email);
+        let contactID=data.id;
+        console.log('Contact ID:',contactID);
+        createContact(formData.firstName,formData.lastName,formData.phone,formData.email,contactID);
+        if(displayFlag){
+            displayGrid();
+        }
+        else{
+            displayList();
+        }
     });
-    
-
-    if(displayFlag){
-        displayGrid();
-    }
-    else{
-        displayList();
-    }
-
     document.querySelector('#overlay2').style.display='none';
     
 });
@@ -333,25 +334,27 @@ addContact.addEventListener('submit',function(event){
 // Replace existing delete contact code with:
 
 let containerType='#buddyGrid';
-let displayType='#contactGrid';
+let displayType='.contactGrid';
 document.querySelector(containerType).addEventListener('click', function(event) {
     if (event.target.id === 'deleteButton') {
         const button = event.target;
         const contactCard = button.closest(displayType);
+        console.log(contactCard.id);
+        const data={
+            ID:contactCard.id
+        }
         
         if (contactCard) {
             // Check if button is already in confirmation state
             if (button.dataset.confirming === 'true') {
                 // Second click - delete the contact
                 try {
-                    fetch('LAMPAPI/DeleteContact.php', {
+                    fetch('LAMPAPI/deleteContact.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({
-                            id: contactCard.dataset.id
-                        })
+                        body: JSON.stringify(data)
                     });
                     contactCard.remove();
                 } catch (error) {
@@ -376,37 +379,58 @@ document.querySelector(containerType).addEventListener('click', function(event) 
 
 
 // -------------------------EDIT CONTACT-------------------------
-const overlay3=document.querySelector('#overlay3');
+const overlay3 = document.querySelector('#overlay3');
+const editContactForm = document.querySelector('#editContactForm');
+
 document.querySelector(containerType).addEventListener('click', function(event) {
-    if(event.target.id==='editButton'){
-        const button=event.target;
-        const contactCard=button.closest(displayType);
+    if (event.target.id === 'editButton') {
+        const button = event.target;
+        const contactCard = button.closest(displayType);
 
-        if(contactCard){
-            
-            const name= contactCard.querySelector('#contactName').textContent.split(' ');
-            const firstName=name[0];
-            const lastName=name[1];
-            const phone=contactCard.querySelector('#contactPhone').textContent;
-            const email=contactCard.querySelector('#contactEmail').textContent;
+        if (contactCard) {
+            const contactID = contactCard.id; // Assuming contact ID is stored in data-contact-id attribute
+            const name = contactCard.querySelector('#contactName').textContent.split(' ');
+            const firstName = name[0];
+            const lastName = name[1];
+            const phone = contactCard.querySelector('#contactPhone').textContent;
+            const email = contactCard.querySelector('#contactEmail').textContent;
 
-            const editContact=document.querySelector('#editContactForm');
-            editContact.querySelector('input[name="firstName"]').value=firstName;
-            editContact.querySelector('input[name="lastName"]').value=lastName;
-            editContact.querySelector('input[name="phone"]').value=phone;
-            editContact.querySelector('input[name="email"]').value=email;
+            editContactForm.querySelector('input[name="firstName"]').value = firstName;
+            editContactForm.querySelector('input[name="lastName"]').value = lastName;
+            editContactForm.querySelector('input[name="phone"]').value = phone;
+            editContactForm.querySelector('input[name="email"]').value = email;
+            editContactForm.dataset.contactId = contactID; // Store contact ID in form's dataset
 
-            overlay3.style.display='block';
+            overlay3.style.display = 'block';
+
+            editContactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = {
+                    firstName: editContactForm.querySelector('input[name="firstName"]').value,
+                    lastName: editContactForm.querySelector('input[name="lastName"]').value,
+                    phone: editContactForm.querySelector('input[name="phone"]').value,
+                    email: editContactForm.querySelector('input[name="email"]').value,
+                    id: contactID // Get contact ID from form's dataset
+                };
+
+                fetch('LAMPAPI/EditContact.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success Editing:', data);
+                    // Update contact details in the UI if needed
+                    editContact(formData.firstName, formData.lastName, formData.phone, formData.email, contactID);
+                    overlay3.style.display = 'none';
+                });
+            }, { once: true }); // Ensure the event listener is added only once
         }
-
     }
-
-});
-
-const editContact=document.querySelector('#editContactForm');
-
-editContact.addEventListener('submit',function(event){
-    
 });
 
 const closeButton3=document.querySelector('#closeButton3');
@@ -421,12 +445,47 @@ gridButton.addEventListener('click',()=>{
     displayGrid();
     displayFlag=true;
     containerType='#buddyGrid';
-    displayType='#contactGrid';
+    displayType='.contactGrid';
 });
 
 listButton.addEventListener('click',()=>{
     displayList();
     displayFlag=false;
     containerType='#buddyList';
-    displayType='#contactList';
+    displayType='.contactList';
 });
+
+// -------------------------SEARCH CONTACT-------------------------
+
+const searchInput=document.querySelector('#searchBarInp');
+const searchButton=document.querySelector('#searchContactButton');
+
+searchButton.addEventListener('click',()=>{
+    const searchValue=searchInput.value;
+    console.log('Searching for:',searchValue);
+    // fetch('LAMPAPI/SearchContact.php',{
+    //     method:'POST',
+    //     headers:{
+    //         'Content-Type':'application/json'
+    //     },
+    //     body:JSON.stringify({
+    //         search:searchValue,
+    //         userID:userID
+    //     })
+    // })
+    // .then(response=>response.json())
+    // .then(data=>{
+    //     console.log('Search Results:',data);
+    //     if(data.error){
+    //         console.log(data.error);
+    //     }
+    //     else{
+    //         console.log('Search Successful');
+    //         document.querySelector(containerType).innerHTML='';
+    //         data.forEach(contact=>{
+    //             createContact(contact.FirstName,contact.LastName,contact.Phone,contact.Email,contact.id);
+    //         });
+    //     }
+    // });
+});
+

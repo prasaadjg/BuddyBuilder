@@ -5,9 +5,12 @@ export function displayList()
     list.id='buddyList';
     for(let i=0;i<list.children.length;i++)
     {
-        list.children[i].id='contactList';
-        list.children[i].children[0].id='contactInfo2';
-        list.children[i].children[1].id='buttonContainer2';
+        list.children[i].classList.add('contactList');
+        list.children[i].classList.remove('contactGrid');
+        list.children[i].children[0].classList.add('contactInfo2');
+        list.children[i].children[0].classList.remove('contactInfo');
+        list.children[i].children[1].classList.add('buttonContainer2');
+        list.children[i].children[1].classList.remove('buttonContainer');
     }
 
     const displaySlider=document.querySelector('#displaySlider');
@@ -22,9 +25,12 @@ export function displayGrid()
     list.id='buddyGrid';
     for(let i=0;i<list.children.length;i++)
     {
-        list.children[i].id='contactGrid';
-        list.children[i].children[0].id='contactInfo';
-        list.children[i].children[1].id='buttonContainer';
+        list.children[i].classList.add('contactGrid');
+        list.children[i].classList.remove('contactList');
+        list.children[i].children[0].classList.add('contactInfo');
+        list.children[i].children[0].classList.remove('contactInfo2');
+        list.children[i].children[1].classList.add('buttonContainer');
+        list.children[i].children[1].classList.remove('buttonContainer2');
     }
 
     const displaySlider=document.querySelector('#displaySlider');

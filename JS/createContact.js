@@ -1,10 +1,10 @@
-export function createContact(firstName,lastName,phone,email)
+export function createContact(firstName,lastName,phone,email,contactID)
 {
     console.log('Creating Contact');
 
     const contactContainer=document.querySelector('.contactContainer');
     const contact=document.createElement('div');
-
+    contact.id=contactID;
     // button container for modifying contact
     const buttons=document.createElement('div');
     
@@ -38,3 +38,5 @@ export function createContact(firstName,lastName,phone,email)
     contact.appendChild(buttons);
     contactContainer.children[0].appendChild(contact);
 }
+
+
