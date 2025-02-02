@@ -54,13 +54,13 @@
                     <div id="buddyGrid">
 
                     <!-- Placeholder Contact to be deleted -->
-                        <div id="contactGrid">
-                            <div id="contactInfo">
+                        <div class="contactGrid" id="0">
+                            <div class="contactInfo">
                                 <p>Name</p>
                                 <p>Phone Number</p>
                                 <p>Email</p>
                             </div>
-                            <div id="buttonContainer">
+                            <div class="buttonContainer">
                                 <button id="editButton">Edit</button>
                                 <button id="deleteButton">Delete</button>
                             </div>
@@ -90,7 +90,7 @@
 
                     <div class="SignIn">
                         <h2>Login</h2>
-                        <p class="ErrorMessage">Invalid Username or Password</p>
+                        <div class="messageLogIn"></div>
                         <form class="form" id="signIn" method="post">
                             <div class="inputContainer">
                                 <div class="inputHeader">
@@ -98,7 +98,7 @@
                                     <p class="requiredField">*</p>
                                 </div>
                                 <div class="input-wrapper">
-                                    <input type="text" name="username" placeholder="Username">
+                                    <input type="text" name="username" placeholder="Username" id="username2">
                                     <img src="/assets/user.svg" alt="userImg" class="input-icon">
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                                     <p class="requiredField">*</p>
                                 </div>
                                 <div class="input-wrapper">
-                                    <input type="password" name="password" placeholder="Password">
+                                    <input type="password" name="password" placeholder="Password" id="password2">
                                     <img src="/assets/lock.svg" alt="lockIcon" class="input-icon">
                                 </div>
                             </div>
