@@ -72,10 +72,13 @@ header::after {
     );
 }
 
-header h1
+header img
 {
     position:absolute;
     left:45%;
+
+    width:7vw;
+    height:7vh;
 }
 
 /* -----------------------------Star Background------------------------- */
@@ -138,7 +141,7 @@ header h1
 .body
 {
     /* aligns the content to the center */
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center space-between;
     align-items: center;
@@ -184,9 +187,32 @@ header h1
     transform: translate(-50%, -50%);
 }
 
+.titlePage h1
+{
+    font-size: 4.5em;
+}
+
+.titlePage h3
+{
+    font-size: 2em;
+}
 
 /* --------------------Sign in/up and search styling ---------------------------------- */
+#signOutButton
+{
+    background-color: var(--background-secondary);
+    color: white;
+    text-align: center;
+    padding: 16px;
+    border-radius: 8px;
+    display: none;
+    font-size: 16px;
+    transition-duration: 1s;
+    margin-left: 90%;
+    box-shadow:0 0 25px 0 rgba(137, 114, 97, 0.4),0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 15px 35px 0 rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 
+}
 /* Sign In/Up button styling */
 #signInUpButton
 { 
@@ -203,13 +229,13 @@ header h1
     cursor: pointer;
 }
 /* Sign In/Up button hover effects */
-#signInUpButton:hover
+#signInUpButton:hover, #signOut:hover
 {
     background-color: #1e1f1ffd;
     color:white;
 }
 /* Sign In/Up button click effects */
-#signInUpButton:active 
+#signInUpButton:active, #signOut:active
 {
     background-color: #1e1f1ffd;
     box-shadow: 0 5px #666;
@@ -396,7 +422,7 @@ header h1
 
 .addBuddyForm
 {
-    background-color: var(--background-primary);
+    background-color: var(--background-secondary);
     box-shadow:0 0 25px 0 rgba(137, 114, 97, 0.4),0 5px 15px 0 rgba(0, 0, 0, 0.4), 0 15px 35px 0 rgba(0, 0, 0, 0.3);
     width: 25vw;
     height:35vh;
@@ -565,14 +591,16 @@ header h1
     width: 100%;
 }
 
-.input-icon {
+.input-wrapper .input-icon {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     width: 1.2em;
     height: 1.2em;
-    pointer-events: none; /* Prevents icon from interfering with input */
+    z-index: 2;
+    cursor:pointer;
+    pointer-events: auto;
 }
 .inputHeader
 {
@@ -638,6 +666,16 @@ header h1
     align-items: center;
 
 }
+.messageLogIn
+{
+    display:none;
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+    height: 3vh;
+    border-radius: 5px;
+
+}
 
 .messageSuccess
 {
@@ -645,8 +683,7 @@ header h1
     color: var(--text-primary);
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.2),0 4px 6px rgba(0, 255, 0, 0.2),0 1px 3px rgba(0, 255, 0, 0.1);
 }
-
-.messageError {
+.messageError,.messageLogIn {
     background-color: var(--accent-error);
     color: var(--text-primary);
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.2), 0 4px 6px rgba(255, 0, 0, 0.2), 0 1px 3px rgba(255, 0, 0, 0.1);
@@ -713,6 +750,7 @@ header h1
     width: 20vw;
     height: 15vh;
     font-size:18px;
+    padding:1rem;
 
     display : flex;
     flex-direction:row;
@@ -720,18 +758,23 @@ header h1
     align-items: center;
 }
 
-.contactInfo
-{
+.contactInfo {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    margin-left:1rem;
 }
 
-.buttonContainer
-{
+.buttonContainer {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3rem;
 }
 
 /* For list display */
@@ -810,4 +853,36 @@ header h1
 
 
 
+/* -------------------------Easteregg----------------------------------------------- */
 
+#rocket {
+    display:none;
+    position: fixed;
+    bottom: -50px;
+    right: -50px;
+    width: 10vw;
+    height: auto;
+    transform: rotate(45deg);
+    z-index: 1000;
+}
+
+#rocket.flying {
+    animation: fly 5s ease-in-out;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(-120vw, -120vh) rotate(80deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 0) rotate(80deg);
+        opacity: 0;
+    }
+}
