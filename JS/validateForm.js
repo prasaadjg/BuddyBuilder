@@ -41,6 +41,7 @@ export function validateSignUp()
     {
         messageSignUp.textContent = 'Invalid input';
         messageSignUp.classList.add('messageError');
+
     }
     return isValid;
 }

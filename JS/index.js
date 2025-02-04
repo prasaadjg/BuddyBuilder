@@ -75,10 +75,19 @@ signUp.addEventListener('submit',function(event){
         console.log(data);
         if(data.error){
             console.log(data.error);
+            const errorText=document.querySelector('#messageSignUp');
+            errorText.classList.add('messageError');
+            errorText.textContent=data.error;
         }
+
         else{
             console.log('User Registered');
 
+            const messageSignUp = document.querySelector('#messageSignUp');
+            messageSignUp.textContent = 'Sign up successful!';
+            messageSignUp.classList.remove('messageError');
+            messageSignUp.classList.add('messageSuccess');
+            
             // Clear form fields
             signUp.querySelector('input[name="firstName"]').value='';
             signUp.querySelector('input[name="lastName"]').value='';
