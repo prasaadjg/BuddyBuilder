@@ -5,6 +5,8 @@ export function createContact(firstName,lastName,phone,email,contactID)
     const contactContainer=document.querySelector('.contactContainer');
     const contact=document.createElement('div');
     contact.id=contactID;
+
+    
     // button container for modifying contact
     const buttons=document.createElement('div');
     
@@ -20,7 +22,7 @@ export function createContact(firstName,lastName,phone,email,contactID)
 
     // contact info
     const contactInfo=document.createElement('div');
-    contactInfo.id='contactInfo';
+    contactInfo.classList.add('contactInfo');
     const contactName=document.createElement('p');
     contactName.id='contactName';
     contactName.textContent=firstName+' '+lastName;

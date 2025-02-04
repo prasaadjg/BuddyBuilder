@@ -3,7 +3,7 @@ import { displayGrid, displayList } from "./displaySwitch.js";
 import { editContact } from "./editContact.js";
 import { validateSignUp } from "./validateForm.js";
 let userID=0;
-
+let lazyObserver;
 
 // -------------------------SIGN IN/UP-------------------------
 const signInUpButton=document.querySelector('#signInUpButton');
@@ -229,7 +229,20 @@ passwordInput.addEventListener('focus', () => {
     validatePassword();
     passwordInput.addEventListener('input', validatePassword);
 });
-
+const inputIcon=document.querySelector('#eyeIcon1');
+inputIcon.addEventListener('click',()=>{
+    console.log('Icon Clicked');
+    if(passwordInput.type==='password')
+    {
+        passwordInput.type='text';
+        inputIcon.src='assets/eyeOpen.svg';
+    }
+    else
+    {
+        passwordInput.type='password';
+        inputIcon.src='assets/eyeClosed.svg';
+    }
+});
 passwordInput.addEventListener('blur', (event) => {
     if (event.relatedTarget !== usernameInput) {
         signUpReqPass.classList.remove('active');
@@ -237,6 +250,7 @@ passwordInput.addEventListener('blur', (event) => {
 });
 // SIGN IN EVENT LISTENER
 const signIn=document.querySelector('#signIn');
+const signOutButton=document.querySelector('#signOutButton');
 signIn.addEventListener('submit',function(event){
     event.preventDefault();
     console.log('Sign In Form Submitted');
@@ -260,6 +274,12 @@ signIn.addEventListener('submit',function(event){
         console.log(data);
         if(data.error){
             console.log(data.error);
+            const errorText=document.querySelector('.messageLogIn');
+            errorText.style.display='flex';
+
+            setTimeout(()=>{
+                errorText.style.display='none';
+            },3000);
         }
         else{
             console.log('User Logged In');
@@ -270,10 +290,41 @@ signIn.addEventListener('submit',function(event){
             document.querySelector('.titlePage').style.display='none';
             document.querySelector('.body').style.display='flex';
             document.querySelector('#signInUpButton').style.display='none';
+            signOutButton.style.display='inline-block';
         }
     })
 });
 
+const inputIcon2=document.querySelector('#eyeIcon2');
+const passwordInput2=document.querySelector('#password2');
+inputIcon2.addEventListener('click',()=>{
+    console.log('Icon Clicked');
+    if(passwordInput2.type==='password')
+        {
+            passwordInput2.type='text';
+            inputIcon2.src='assets/eyeOpen.svg';
+        }
+        else
+        {
+            passwordInput2.type='password';
+            inputIcon2.src='assets/eyeClosed.svg';
+        }
+});
+signOutButton.addEventListener('click',()=>{
+    console.log('Sign Out Button Clicked');
+    userID=0;
+    document.querySelector('.body').style.display='none';
+    document.querySelector('.titlePage').style.display='flex';
+    document.querySelector('#signInUpButton').style.display='inline-block';
+    signOutButton.style.display='none';
+
+    const display=document.querySelector('.contactContainer');
+
+    while(display.children[0].children.length>0)
+    {
+        display.children[0].children[0].remove();
+    }
+});
 // -------------------------ADD CONTACT----------------------------
 const addContactButton= document.querySelector('#addContactButton');
 const closeButton2=document.querySelector('#closeButton2');
@@ -288,44 +339,53 @@ closeButton2.addEventListener('click',()=>{
 
 
 
-const addContact= document.querySelector('#addContactForm');
-let displayFlag=true;
-addContact.addEventListener('submit',function(event){
+const addContact = document.querySelector('#addContactForm');
+let displayFlag = true;
+
+addContact.addEventListener('submit', function(event) {
     event.preventDefault();
-
-
-    const formData=
-    {
-        firstName:addContact.querySelector('input[name="firstName"]').value,
-        lastName:addContact.querySelector('input[name="lastName"]').value,
-        phone:addContact.querySelector('input[name="phone"]').value,
-        email:addContact.querySelector('input[name="email"]').value,
-        userID: userID
-    }
-
-    fetch('LAMPAPI/AddContact.php',{
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify(formData)
     
+    const formData = {
+        firstName: addContact.querySelector('input[name="firstName"]').value.trim(),
+        lastName: addContact.querySelector('input[name="lastName"]').value.trim(),
+        phone: addContact.querySelector('input[name="phone"]').value.trim(),
+        email: addContact.querySelector('input[name="email"]').value.trim(),
+        userID: userID
+    };
+
+    // Log formData to check structure
+    console.log('FormData:', formData);
+
+    fetch('LAMPAPI/AddContact.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
     })
-    .then(response=>response.json())
-    .then(data=>{
-        console.log("Success Adding:",data);
-        let contactID=data.id;
-        console.log('Contact ID:',contactID);
-        createContact(formData.firstName,formData.lastName,formData.phone,formData.email,contactID);
-        if(displayFlag){
-            displayGrid();
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        else{
+        return response.json();
+    })
+    .then(data => {
+        console.log("Success Adding:", data);
+        let contactID = data.id;
+        console.log('Contact ID:', contactID);
+        createContact(formData.firstName, formData.lastName, formData.phone, formData.email, contactID);
+        
+        if(displayFlag) {
+            displayGrid();
+        } else {
             displayList();
         }
+        document.querySelector('#overlay2').style.display = 'none';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle error appropriately
     });
-    document.querySelector('#overlay2').style.display='none';
-    
 });
 
 
@@ -341,7 +401,7 @@ document.querySelector(containerType).addEventListener('click', function(event) 
         const contactCard = button.closest(displayType);
         console.log(contactCard.id);
         const data={
-            ID:contactCard.id
+            ID:parseInt(contactCard.id)
         }
         
         if (contactCard) {
@@ -350,7 +410,7 @@ document.querySelector(containerType).addEventListener('click', function(event) 
                 // Second click - delete the contact
                 try {
                     fetch('LAMPAPI/deleteContact.php', {
-                        method: 'POST',
+                        method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -389,6 +449,7 @@ document.querySelector(containerType).addEventListener('click', function(event) 
 
         if (contactCard) {
             const contactID = contactCard.id; // Assuming contact ID is stored in data-contact-id attribute
+            console.log('Editing Contact with ID:', contactID);
             const name = contactCard.querySelector('#contactName').textContent.split(' ');
             const firstName = name[0];
             const lastName = name[1];
@@ -411,7 +472,7 @@ document.querySelector(containerType).addEventListener('click', function(event) 
                     lastName: editContactForm.querySelector('input[name="lastName"]').value,
                     phone: editContactForm.querySelector('input[name="phone"]').value,
                     email: editContactForm.querySelector('input[name="email"]').value,
-                    id: contactID // Get contact ID from form's dataset
+                    id: parseInt(contactID) // Get contact ID from form's dataset
                 };
 
                 fetch('LAMPAPI/EditContact.php', {
@@ -463,29 +524,59 @@ const searchButton=document.querySelector('#searchContactButton');
 searchButton.addEventListener('click',()=>{
     const searchValue=searchInput.value;
     console.log('Searching for:',searchValue);
-    // fetch('LAMPAPI/SearchContact.php',{
-    //     method:'POST',
-    //     headers:{
-    //         'Content-Type':'application/json'
-    //     },
-    //     body:JSON.stringify({
-    //         search:searchValue,
-    //         userID:userID
-    //     })
-    // })
-    // .then(response=>response.json())
-    // .then(data=>{
-    //     console.log('Search Results:',data);
-    //     if(data.error){
-    //         console.log(data.error);
-    //     }
-    //     else{
-    //         console.log('Search Successful');
-    //         document.querySelector(containerType).innerHTML='';
-    //         data.forEach(contact=>{
-    //             createContact(contact.FirstName,contact.LastName,contact.Phone,contact.Email,contact.id);
-    //         });
-    //     }
-    // });
+    fetch('LAMPAPI/SearchContacts.php',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            search:searchValue,
+            userId:userID
+        })
+    })
+    .then(response=>response.json())
+    .then(data=>{
+        console.log('Search Results:',data);
+        if(data.error){
+            console.log(data.error);
+        }
+        else{
+            console.log('Search Successful');
+            document.querySelector(containerType).innerHTML='';
+            data.results.forEach(contact=>{
+                createContact(contact.FirstName,contact.LastName,contact.Phone,contact.Email,contact.id);
+            });
+            if(displayFlag)
+            {
+                displayGrid();
+            }
+            else
+            {
+                displayList();
+            }
+        }
+    });
 });
 
+
+//------------------------Easteregg-------------------------
+const logo=document.querySelector('#logo');
+const rocket=document.querySelector('#rocket');
+let clickCount=0;
+logo.addEventListener('click',()=>{
+    console.log('Logo Clicked');
+    clickCount++;
+
+    if(clickCount>0 && clickCount%10==0)
+    {
+        console.log("Easter Egg Activated");
+        rocket.style.display='block';
+        rocket.classList.add('flying');
+
+        setTimeout(()=>{
+            rocket.classList.remove('flying');
+            rocket.style.display='none';
+        },5000);
+
+    }
+});
