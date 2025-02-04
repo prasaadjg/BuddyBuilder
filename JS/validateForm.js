@@ -31,10 +31,6 @@ export function validateSignUp()
     {
         messageSignUp.textContent = 'Sign up successful!';
         messageSignUp.classList.add('messageSuccess');
-        firstName.value = '';
-        lastName.value = '';
-        username.value = '';
-        password.value = '';
         
         [firstName, lastName, username, password].forEach(input => {
             input.style.border = '1px solid #adb5bd'; // Default border style

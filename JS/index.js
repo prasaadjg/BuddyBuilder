@@ -55,14 +55,13 @@ signUp.addEventListener('submit',function(event){
     }
     console.log('Sign Up Form Submitted');
     
-    const formData= 
-    {
-        FirstName:signUp.querySelector('input[name="firstName"]').value,
-        LastName:signUp.querySelector('input[name="lastName"]').value,
-        Login:signUp.querySelector('input[name="username"]').value,
-        Password:signUp.querySelector('input[name="password"]').value
+    const formData = {
+        FirstName: signUp.querySelector('input[name="firstName"]').value,
+        LastName: signUp.querySelector('input[name="lastName"]').value,
+        Login: signUp.querySelector('input[name="username"]').value,
+        Password: signUp.querySelector('input[name="password"]').value
     }
-
+    console.log('FormData:', formData);
     fetch('LAMPAPI/register.php',{
         method:'POST',
         headers:{
@@ -80,7 +79,11 @@ signUp.addEventListener('submit',function(event){
         else{
             console.log('User Registered');
 
-
+            // Clear form fields
+            signUp.querySelector('input[name="firstName"]').value='';
+            signUp.querySelector('input[name="lastName"]').value='';
+            signUp.querySelector('input[name="username"]').value='';
+            signUp.querySelector('input[name="password"]').value='';
 
             // Should I auto log in the user?
             // document.querySelector('#overlay').style.display='none';
