@@ -152,14 +152,7 @@
                                     <p class="requiredField">*</p>
                                 </div>
                                 <div class="input-wrapper">
-                                    <input type="password" 
-                                            name="password" 
-                                            placeholder="Password" 
-                                            required
-                                            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                                            title="Password must be at least 8 characters long and contain at least one letter and one number"
-                                            minlength="8"
-                                            id="password">
+                                    <input type="password" name="password" placeholder="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" title="Password must be at least 8 characters long, contain at least one special character and one number" minlength="8" id="password">
                                     <img src="/assets/eyeClosed.svg" alt="lockIcon" class="input-icon" id="eyeIcon1">
                                 </div>
                             </div>
@@ -198,7 +191,7 @@
                                 <div class="requirement">
                                     <img src="assets/correct.svg" alt="correct" id="correctIcon">
                                     <img src="assets/wrong.svg" alt="wrong" id="wrongIcon">
-                                    <p>At least one letter and one number </p>
+                                    <p>At least one special character and one number </p>
                                 </div>
 
                             </div>
