@@ -10,13 +10,14 @@
     <body>
 
         
-
+        <img src="/assets/rocket.svg" alt="rocket" id="rocket">
         <div class="stars"></div>
         <div class="twinkling"></div>
         <header>
             <!-- Header/Logo Element -->
-            <h1>Buddy Builder</h1>
+            <img src="/assets/logo.png" alt="logo" id="logo">
             <button id="signInUpButton">Sign In/Up</button>
+            <button id="signOutButton">Sign Out</button>
         </header>
         <div class="content">
             <div class="titlePage">
@@ -51,22 +52,7 @@
 
                 <!-- Container to hold all contacts -->
                 <div class="contactContainer">
-                    <div id="buddyGrid">
-
-                    <!-- Placeholder Contact to be deleted -->
-                        <div class="contactGrid" id="0">
-                            <div class="contactInfo">
-                                <p>Name</p>
-                                <p>Phone Number</p>
-                                <p>Email</p>
-                            </div>
-                            <div class="buttonContainer">
-                                <button id="editButton">Edit</button>
-                                <button id="deleteButton">Delete</button>
-                            </div>
-
-                        </div>
-                    </div>
+                    <div id="buddyGrid"></div>
                 </div>
                 
             </div>
@@ -90,7 +76,7 @@
 
                     <div class="SignIn">
                         <h2>Login</h2>
-                        <div class="messageLogIn"></div>
+                        <div class="messageLogIn">Username or Password is invalid</div>
                         <form class="form" id="signIn" method="post">
                             <div class="inputContainer">
                                 <div class="inputHeader">
@@ -110,7 +96,7 @@
                                 </div>
                                 <div class="input-wrapper">
                                     <input type="password" name="password" placeholder="Password" id="password2">
-                                    <img src="/assets/lock.svg" alt="lockIcon" class="input-icon">
+                                    <img src="/assets/eyeClosed.svg" alt="lockIcon" class="input-icon" id="eyeIcon2">
                                 </div>
                             </div>
                             
@@ -174,7 +160,7 @@
                                             title="Password must be at least 8 characters long and contain at least one letter and one number"
                                             minlength="8"
                                             id="password">
-                                    <img src="/assets/lock.svg" alt="lockIcon" class="input-icon">
+                                    <img src="/assets/eyeClosed.svg" alt="lockIcon" class="input-icon" id="eyeIcon1">
                                 </div>
                             </div>
                                 
