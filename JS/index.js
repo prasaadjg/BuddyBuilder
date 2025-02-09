@@ -42,7 +42,7 @@ displayRegister.addEventListener('click',()=>{
     console.log('Register Clicked');
     signInCont.style.display='none';
     signUpCont.style.display='flex';
-    slider.style.left='130px';
+    slider.style.left='5.1vw';
 });
 
 // SIGN UP EVENT LISTENER
@@ -88,6 +88,9 @@ signUp.addEventListener('submit',function(event){
             messageSignUp.classList.remove('messageError');
             messageSignUp.classList.add('messageSuccess');
             
+            const user = formData.Login;
+            const pass = formData.Password;
+
             // Clear form fields
             signUp.querySelector('input[name="firstName"]').value='';
             signUp.querySelector('input[name="lastName"]').value='';
@@ -95,12 +98,34 @@ signUp.addEventListener('submit',function(event){
             signUp.querySelector('input[name="password"]').value='';
 
             // Should I auto log in the user?
-            // document.querySelector('#overlay').style.display='none';
-            // document.querySelector('.titlePage').style.display='none';
-            // document.querySelector('.body').style.display='flex';
-            // document.querySelector('#signInUpButton').style.display='none';
+            fetch('LAMPAPI/Login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    login: user,
+                    password: pass
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.error) {
+                    console.log(data.error);
+                } else {
+                    
+                    userID = data.id;
+                    console.log('User Auto-Logged In ', userID);
+                    document.querySelector('#overlay').style.display = 'none';
+                    document.querySelector('.titlePage').style.display = 'none';
+                    document.querySelector('.body').style.display = 'flex';
+                    document.querySelector('#signInUpButton').style.display = 'none';
+                    signOutButton.style.display='inline-block';
+                }
+            });
         }
-    })
+    });
 });
 
 const firstNameInput=document.querySelector('#firstName');
@@ -340,9 +365,17 @@ signOutButton.addEventListener('click',()=>{
 // -------------------------ADD CONTACT----------------------------
 const addContactButton= document.querySelector('#addContactButton');
 const closeButton2=document.querySelector('#closeButton2');
+const addContact = document.querySelector('#addContactForm');
+let displayFlag = true;
+
 addContactButton.addEventListener('click',()=>{
     console.log('Add Contact Button Clicked');
     document.querySelector('#overlay2').style.display='block';
+    addContact.querySelector('input[name="firstName"]').value='';
+    addContact.querySelector('input[name="lastName"]').value='';
+    addContact.querySelector('input[name="phone"]').value='';
+    addContact.querySelector('input[name="email"]').value='';
+
 });
 
 closeButton2.addEventListener('click',()=>{
@@ -351,8 +384,7 @@ closeButton2.addEventListener('click',()=>{
 
 
 
-const addContact = document.querySelector('#addContactForm');
-let displayFlag = true;
+
 
 addContact.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -411,6 +443,7 @@ document.querySelector(containerType).addEventListener('click', function(event) 
     if (event.target.id === 'deleteButton') {
         const button = event.target;
         const contactCard = button.closest(displayType);
+        console.log(contactCard);
         console.log(contactCard.id);
         const data={
             ID:parseInt(contactCard.id)
@@ -556,7 +589,8 @@ searchButton.addEventListener('click',()=>{
             console.log('Search Successful');
             document.querySelector(containerType).innerHTML='';
             data.results.forEach(contact=>{
-                createContact(contact.FirstName,contact.LastName,contact.Phone,contact.Email,contact.id);
+                console.log(contact);
+                createContact(contact.FirstName,contact.LastName,contact.Phone,contact.Email,contact.ID);
             });
             if(displayFlag)
             {
@@ -566,6 +600,7 @@ searchButton.addEventListener('click',()=>{
             {
                 displayList();
             }
+            searchInput.value='';
         }
     });
 });

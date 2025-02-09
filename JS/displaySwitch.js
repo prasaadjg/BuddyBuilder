@@ -14,7 +14,7 @@ export function displayList()
     }
 
     const displaySlider=document.querySelector('#displaySlider');
-    displaySlider.style.left='130px';
+    displaySlider.style.left='5.1vw';
 
 }
 
